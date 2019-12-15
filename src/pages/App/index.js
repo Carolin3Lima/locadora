@@ -12,191 +12,68 @@ import { logout } from "../../services/auth";
 import Properties from "./components/Properties";
 import Button from "./components/Button";
 
-import Games from './components/Games/index'
+import GamesComponent from './components/Games/index'
 
 import AddProperty from "../AddProperty";
 
-import { Container, ButtonContainer, PointReference } from "./styles";
+import { Index } from "./styles";
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const TOKEN =
   "pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ";
 
   
   class App extends Component {
-    constructor (props) {
-      this.state = {
-            Games: [],
-      }
-      api.get("/games")
-       .then(res => {
-           this.setState({ Games: res.data });  
-      });
-   }
 
-//   state = {
-//     games: null,
-//     loading: false
-//   };
+    state = {
+      games: null,  
+      loading: true
+    };
 
-//   static propTypes = {
 
-//   };
-
-//  constructor() {
+ constructor() {
  
-//     super();
+    super();
 
-//   }
-
-//   state = {
-//     viewport: {
-//       latitude: -27.2108001,
-//       longitude: -49.6446024,
-//       zoom: 12.8,
-//       bearing: 0,
-//       pitch: 0
-//     },
-//     properties: [],
-//     addActivate: false
-//   };
-
-  // async componentDidMount() {
-  //   try {
-  //     const response = await api.get("/games", {
-  //     });
-  //     this.setState({ games: response.data });
-      
-      
-  //     console.log(response)
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  
-  
   }
 
-//   updatePropertiesLocalization() {
-//     this.loadProperties();
-//   }
+     async componentDidMount() {
+    try {
+      const response = await api.get("/games", {
+      });
+      this.setState({ games: response.data,
+      loading: false });  
+      console.log(this.state)
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-//   loadProperties = async () => {
-//     const { latitude, longitude } = this.state.viewport;
-//     try {
-//       const response = await api.get("/properties", {
-//         params: { latitude, longitude }
-//       });
-//       this.setState({ properties: response.data });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   handleLogout = e => {
-//     logout();
-//     this.props.history.push("/");
-//   };
-
-//   handleAddProperty = () => {
-//     const { match, history } = this.props;
-//     const { latitude, longitude } = this.state.viewport;
-//     history.push(
-//       `${match.url}/properties/add?latitude=${latitude}&longitude=${longitude}`
-//     );
-
-//     this.setState({ addActivate: false });
-//   };
-
-//   renderActions() {
-//     return (
-//       <ButtonContainer>
-//         <Button
-//           color="#fc6963"
-//           onClick={() => this.setState({ addActivate: true })}
-//         >
-//           <i className="fa fa-plus" />
-//         </Button>
-//         <Button color="#222" onClick={this.handleLogout}>
-//           <i className="fa fa-times" />
-//         </Button>
-//       </ButtonContainer>
-//     );
-//   }
-
-//   renderButtonAdd() {
-//     return (
-//       this.state.addActivate && (
-//         <PointReference>
-//           <i className="fa fa-map-marker" />
-//           <div>
-//             <button onClick={this.handleAddProperty} type="button">
-//               Adicionar
-//             </button>
-//             <button
-//               onClick={() => this.setState({ addActivate: false })}
-//               className="cancel"
-//             >
-//               Cancelar
-//             </button>
-//           </div>
-//         </PointReference>
-//       )
-//     );
-//   }
-
-//   render() {
-//     const {
-//       containerWidth: width,
-//       containerHeight: height,
-//       match
-//     } = this.props;
-//     const { properties, addActivate } = this.state;
-//     return (
-//       <Fragment>
-//         <MapGL
-//           width={width}
-//           height={height}
-//           {...this.state.viewport}
-//           mapStyle="mapbox://styles/mapbox/dark-v9"
-//           mapboxApiAccessToken={TOKEN}
-//           onViewportChange={viewport => this.setState({ viewport })}
-//           onViewStateChange={this.updatePropertiesLocalization.bind(this)}
-//         >
-//           {!addActivate && <Properties match={match} properties={properties} />}
-//         </MapGL>
-//         {this.renderActions()}
-//         {this.renderButtonAdd()}
-//         <ModalRoute
-//           path={`${match.url}/properties/add`}
-//           parentPath={match.url}
-//           component={AddProperty}
-//         />
-//         <ModalRoute
-//       path={`${match.url}/property/:id`}
-//       parentPath={match.url}
-//       component={Property}
-//     />
   
-//       </Fragment>
-//     );
-//   }
-// }
+   
 
 
-// const DimensionedMap = withRouter(Dimensions()(Map));
-// const App = () => (
-//   <Container>
-//     <DimensionedMap />
-//   </Container>
-// );
+ render() {
 
-// ****************************************new******************************
+const {games,loading} = this.state;
 
-console.log(this.state.Games);
-  render() {
-    return (
-      <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+
+
+
+if(loading){
+  return (
+  <span>Carregando</span>
+  )
+}
+else{
+
+  console.log(games)
+      return(
+
+        
+          <div>
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#">Navbar</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
@@ -230,16 +107,40 @@ console.log(this.state.Games);
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
-</nav>
-<ul>
-       {Object.keys(elem).map((v, i) => <li key={i}>{v} {this.state.games[v]}</li> )}
-     </ul>
-</div>
-    )
+</nav>        <Index>
+              <div className="newReleases">
+              <p>Lançamentos</p>
+              <ul>
+              {
+                  games.map(games => (
+                      <li key={games.id} align="start">
+                          <div>
+                              <img src={games.images} alt={games.name} ></img>
+                              <p>{games.name}</p>
+                              <button>Tenho</button>
+                              <button>Alugar</button>
+                          </div>
+                      </li>
+                  ))
+              }
+              </ul>
+              </div>
+              </Index>
+          </div>
+
+          
+      );
+    }    
   }
 
+  
 }
 
 
 
+
 export default App;
+
+
+
+

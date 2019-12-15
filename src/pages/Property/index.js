@@ -11,6 +11,9 @@ const intlMonetary = new Intl.NumberFormat("pt-BR", {
 });
 
 export default class Property extends Component {
+
+  
+
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
@@ -51,7 +54,7 @@ export default class Property extends Component {
         <p>{property.address}</p>
         <Images>
           {property.images.map(image => (
-            <img src={image.url} alt={image.path} />
+            <img src={image.path} alt={image.path} />
           ))}
         </Images>
         <span>{intlMonetary.format(property.price)}</span>
