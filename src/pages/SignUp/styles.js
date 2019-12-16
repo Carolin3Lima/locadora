@@ -31,7 +31,7 @@ export const Form = styled.form`
     flex: 1;
     height: 46px;
     margin-bottom: 15px;
-    padding: 0 20px;
+    padding: 10px 20px 10px;
     color: #777;
     font-size: 15px;
     width: 100%;
@@ -43,8 +43,8 @@ export const Form = styled.form`
   button {
     color: #fff;
     font-size: 16px;
-    background: #fc6963;
-    height: 56px;
+    background: #28a745;
+    height: 36px;
     border: 0;
     border-radius: 5px;
     width: 100%;
