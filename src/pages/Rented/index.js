@@ -18,11 +18,7 @@ import { Index, Item } from "./styles";
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const TOKEN =
-  "pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ";
-
-  
-  class App extends Component {
+  class Rented extends Component {
 
     state = {
       games:null,
@@ -66,6 +62,7 @@ const TOKEN =
 
 
   async Rent(e,id){
+    console.log(id)
     try {
       const response = await api.post("/games/rent", { 
         "renter_id":localStorage.getItem('userId'),
@@ -233,7 +230,7 @@ else{
 
 
 
-export default App;
+export default Rented;
 
 
 

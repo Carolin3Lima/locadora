@@ -32,6 +32,9 @@ class SignIn extends Component {
         
         const userId =  JSON.parse(jsonPayload);
 
+        localStorage.setItem('userId', userId.uid);
+
+
         login(response.data.token);
         this.props.history.push({
         pathname: '/app',

@@ -56,7 +56,6 @@ const TOKEN =
   start(){
     this.props.history.push({
       pathname: "/app",
-      state: { userId: this.props.location.state.userId }
       });
   }
 
