@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import Logo from "../../assets/airbnb-logo.svg";
+import Logo from "../../assets/logo.png";
 import api from "../../services/api";
 import { login } from "../../services/auth";
 
@@ -51,7 +51,7 @@ class SignIn extends Component {
     return (
       <Container>
         <Form onSubmit={this.handleSignIn}>
-          <img src={Logo} alt="Airbnb logo" />
+          <img src={Logo} alt="switching" />
           {this.state.error && <p>{this.state.error}</p>}
           <input
             type="email"

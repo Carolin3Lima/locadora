@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import Logo from "../../assets/airbnb-logo.svg";
+import Logo from "../../assets/logo.png";
 
 import { Form, Container } from "./styles";
 import api from "../../services/api";
@@ -35,7 +35,7 @@ class SignUp extends Component {
     return (
       <Container>
         <Form onSubmit={this.handleSignUp}>
-          <img src={Logo} alt="Airbnb logo" />
+          <img src={Logo} alt="switching" />
           {this.state.error && <p>{this.state.error}</p>}
           <input
             type="text"

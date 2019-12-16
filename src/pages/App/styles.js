@@ -58,6 +58,11 @@ export const PointReference = styled.div`
 `;
 
 export const Index = styled.div`
+
+.body{
+  background-color: black;
+}
+
 ul {
   list-style-type:none;
 }
@@ -66,4 +71,57 @@ img {
   width: 200px;
   height: 280px;
 }
+
+ul {
+  margin-right: 40px;
+}
+
+.title {
+  margin-left: 40px;
+  font-weight: bold;
+  color: #1eeca8;
+  padding-top: 20px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.buttons{
+  margin-left: 13px;
+  padding-bottom: 8px;
+}
+
+.game-title {
+  text-align: center;
+  font-weight: bold;
+  color: #1eeca8;
+  padding-top: 10px;
+}
+
+.more {
+  font-size: 10px;
+  margin-left: 93%;
+}
+
+.newReleases {
+  padding-bottom: 20px;
+}
+
+.ps4Only {
+  padding-bottom: 20px;
+}
+
+.xboxOnly {
+  padding-bottom: 20px;
+}
+
+`;
+
+export const Item = styled.div`
+
+// .navbar-nav {
+//   margin-left: 50%;
+// }
+
 `;

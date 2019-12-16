@@ -79,7 +79,7 @@ else{
         
           <div>
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="#">Navbar</a>
+  <a className="navbar-brand" href="#">LOCADORA</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -96,7 +96,7 @@ else{
         <a className="nav-link" onClick={this.start.bind(this)}>Minha Conta</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" onClick={this.start.bind(this)}>Logout</a>
+        <a className="nav-link" href="/">Logout</a>
       </li>
      
     </ul>
