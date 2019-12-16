@@ -9,8 +9,8 @@ import Property from "../Property";
 import api from "../../services/api";
 import { logout } from "../../services/auth";
 
-import Properties from "./components/Properties";
-import Button from "./components/Button";
+
+
 import AddProperty from "../AddProperty";
 
 import { Index } from "./styles";
@@ -21,86 +21,50 @@ const TOKEN =
   "pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ";
 
   
-  class App extends Component {
+  class User extends Component {
 
     state = {
-      games: null,  
-      loading: true,
-      userId:null
+      users: null, 
+      games:null, 
+      loading: true
     };
 
 
-    constructor (props) {
-      super(props)
+ constructor() {
+ 
+    super();
 
   }
   
 
- 
      async componentDidMount() {
-       console.log(this)
-      this.setState({
-        userId: this.props.location.state.userId
-      })
-
-
-    try {
-      const response = await api.get("/games", {
-      });
-      this.setState({ games: response.data,
-      loading: false });  
-      // console.log(this.state)
+      const { id } = this.props.match.params;
+      try {
+      const userData = await api.get(`/user/${id}`)
+      const gameData = await api.get(`/user/games/${id}`)
+      this.setState({ 
+        users: userData.data,
+        games: gameData.data,
+        loading: false });
+        console.log(this.state.games)  
     } catch (err) {
       console.log(err);
     }
   }
 
-
-  async sendData(){
-    try {
-      const response = await api.post("/games/add", { 
-        "user_id":"1",
-        "game_id":"1",
-        "available":"1",
-        "region":"1",
-        "time":"1",
-        "price":"1"}
-      );
-      console.log(response);
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-
-//   async getId(){
-//     try {
-//       const { id } = this.props.match.params;
-//       const { data } = await api.get(`/user/${id}`);
-//       this.setState({ user: data });
-//     } catch (err) {
-//       console.log(err);
-//   }
-// }
-
-
-  myAccount(){
+  
+  start(){
     this.props.history.push({
-      pathname: "user/"+this.props.location.state.userId,
+      pathname: "/app",
       state: { userId: this.props.location.state.userId }
       });
   }
-  
-   
-  
+
+ 
 
  render() {
   
-const {games,loading} = this.state;
-
-
-
+const {users,games,loading} = this.state;
 
 if(loading){
   return (
@@ -109,7 +73,7 @@ if(loading){
 }
 else{
 
-  // console.log(games)
+  
       return(
 
         
@@ -123,16 +87,16 @@ else{
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
-        <a className="nav-link" href="#">Início <span className="sr-only">(current)</span></a>
+        <a className="nav-link" onClick={this.start.bind(this)}  >Início <span className="sr-only">(current)</span></a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Alugados</a>
+        <a className="nav-link" onClick={this.start.bind(this)} href="#">Alugados</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" onClick={this.myAccount.bind(this)}>Minha Conta</a>
+        <a className="nav-link" onClick={this.start.bind(this)}>Minha Conta</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Logout</a>
+        <a className="nav-link" onClick={this.start.bind(this)}>Logout</a>
       </li>
      
     </ul>
@@ -141,26 +105,28 @@ else{
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
-</nav>        
-<Index>
-              <div className="newReleases">
-              <p>Lançamentos</p>
+</nav>     
+              <div>
+              <p>Meus Dados</p>  
+              <p>Username: {users.username}</p>
               <ul>
               {
                   games.map(games => (
                       <li key={games.id} align="start">
                           <div>
-                              <img src={games.images} alt={games.name} ></img>
+                    
                               <p>{games.name}</p>
-                              <button value= {games.id} onClick={(e) => this.sendData(e)}>Tenho</button>
-                              <button href="#">Alugar</button>
+                              <p>{games.region}</p>
                           </div>
                       </li>
                   ))
               }
               </ul>
+              <button href="#">Editar</button>
               </div>
-              </Index>
+              
+               
+
           </div>
 
           
@@ -174,8 +140,4 @@ else{
 
 
 
-export default App;
-
-
-
-
+export default User;
