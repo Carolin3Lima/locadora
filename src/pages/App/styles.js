@@ -70,6 +70,7 @@ ul {
 img {
   width: 200px;
   height: 280px;
+  padding-left: 15px;
 }
 
 ul {
@@ -88,7 +89,7 @@ button {
 }
 
 .buttons{
-  margin-left: 13px;
+  margin-left: 50px;
   padding-bottom: 8px;
 }
 
@@ -97,6 +98,7 @@ button {
   font-weight: bold;
   color: #1eeca8;
   padding-top: 10px;
+  // padding-bottom: 10px;
 }
 
 .more {
@@ -120,8 +122,18 @@ button {
 
 export const Item = styled.div`
 
-// .navbar-nav {
-//   margin-left: 50%;
-// }
+.card-block {
+  min-height: 300px;
+  background-color: black;
+}
 
+.container-fluid {
+  width: 78em;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.container-fluid::-webkit-scrollbar {
+  display: none;
+}
 `;
