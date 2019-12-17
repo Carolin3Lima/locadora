@@ -66,6 +66,7 @@ const TOKEN =
 
 
   async Rent(e,id){
+    console.log(id)
     try {
       const response = await api.post("/games/rent", { 
         "renter_id":localStorage.getItem('userId'),
@@ -80,21 +81,17 @@ const TOKEN =
   }
 
 
-//   async getId(){
-//     try {
-//       const { id } = this.props.match.params;
-//       const { data } = await api.get(`/user/${id}`);
-//       this.setState({ user: data });
-//     } catch (err) {
-//       console.log(err);
-//   }
-// }
-
 
   myAccount(){
     console.log(localStorage.getItem('userId'))
     this.props.history.push({
-      pathname: "user/"+localStorage.getItem('userId')
+      pathname: "/user/"+localStorage.getItem('userId')
+      });
+  }
+
+  Rented(){
+    this.props.history.push({
+      pathname: "/rented/"+localStorage.getItem('userId')
       });
   }
   
@@ -133,7 +130,7 @@ else{
         <a className="nav-link" href="/app">Início <span className="sr-only">(current)</span></a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Alugados</a>
+        <a className="nav-link" onClick={this.Rented.bind(this)}>Alugados</a>
       </li>
       <li className="nav-item">
         <a className="nav-link" onClick={this.myAccount.bind(this)}>Minha Conta</a>

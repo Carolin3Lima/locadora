@@ -8,6 +8,7 @@ import debounce from "lodash/debounce";
 import Property from "../Property";
 import api from "../../services/api";
 import { logout } from "../../services/auth";
+import Logo from "../../assets/logo.png";
 
 
 
@@ -52,13 +53,36 @@ const TOKEN =
     }
   }
 
-  
-  start(){
+  async Rent(e,id){
+    console.log(id)
+    try {
+      const response = await api.post("/games/rent", { 
+        "renter_id":localStorage.getItem('userId'),
+        'id':id,
+        'available':0}
+      );
+      window.location.reload();
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
+
+  myAccount(){
+    console.log(localStorage.getItem('userId'))
     this.props.history.push({
-      pathname: "/app",
+      pathname: "/user/"+localStorage.getItem('userId')
       });
   }
 
+
+  Rented(){
+    this.props.history.push({
+      pathname: "/rented/"+localStorage.getItem('userId')
+      });
+  }
  
 
  render() {
@@ -78,33 +102,35 @@ else{
         
           <div>
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="#">LOCADORA</a>
+  <a className="navbar-brand" href="#"><img src={Logo} alt="switching" /></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
-        <a className="nav-link" onClick={this.start.bind(this)}  >Início <span className="sr-only">(current)</span></a>
+        <a className="nav-link" href="/app">Início <span className="sr-only">(current)</span></a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" onClick={this.start.bind(this)} href="#">Alugados</a>
+        <a className="nav-link" onClick={this.Rented.bind(this)}>Alugados</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" onClick={this.start.bind(this)}>Minha Conta</a>
+        <a className="nav-link" onClick={this.myAccount.bind(this)}>Minha Conta</a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="/">Logout</a>
+      <li className="nav-item logout">
+        <a className="nav-link" href="/">Sair</a>
       </li>
      
     </ul>
+     
     <form className="form-inline my-2 my-lg-0">
       <input className="form-control mr-sm-2" type="search" placeholder="Procurar jogo" aria-label="Search"/>
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
-</nav>     
+</nav>       
               <div>
               <p>Meus Dados</p>  
               <p>Username: {users.username}</p>

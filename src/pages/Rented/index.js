@@ -1,18 +1,7 @@
 import React, { Component, Fragment } from "react";
-import Dimensions from "react-dimensions";
-import { withRouter } from "react-router-dom";
-import { ModalRoute } from "react-router-modal";
-import MapGL from "react-map-gl";
-import PropTypes from "prop-types";
-import debounce from "lodash/debounce";
-import Property from "../Property";
 import api from "../../services/api";
-import { logout } from "../../services/auth";
 import Logo from "../../assets/logo.png";
 
-import Properties from "./components/Properties";
-import Button from "./components/Button";
-import AddProperty from "../AddProperty";
 
 import { Index, Item } from "./styles";
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
@@ -43,11 +32,11 @@ import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
 
     try {
-      const response = await api.get("/games/available", {
+      const response = await api.get("/user/games/rented/"+localStorage.getItem('userId'), {
       });
-      const ps4response = await api.get("/games/available/ps4", {
+      const ps4response = await api.get("user/games/rented/ps4/"+localStorage.getItem('userId'), {
       });
-      const xboxresponse = await api.get("/games/available/xbox", {
+      const xboxresponse = await api.get("/user/games/rented/xbox/"+localStorage.getItem('userId'), {
       });
 
       this.setState({ games: response.data,
@@ -61,13 +50,13 @@ import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
   }
 
 
-  async Rent(e,id){
+  async GiveBack(e,id){
     console.log(id)
     try {
       const response = await api.post("/games/rent", { 
-        "renter_id":localStorage.getItem('userId'),
+        "renter_id":null,
         'id':id,
-        'available':0}
+        'available':1}
       );
       window.location.reload();
       return response;
@@ -77,21 +66,18 @@ import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
   }
 
 
-//   async getId(){
-//     try {
-//       const { id } = this.props.match.params;
-//       const { data } = await api.get(`/user/${id}`);
-//       this.setState({ user: data });
-//     } catch (err) {
-//       console.log(err);
-//   }
-// }
-
 
   myAccount(){
     console.log(localStorage.getItem('userId'))
     this.props.history.push({
-      pathname: "user/"+localStorage.getItem('userId')
+      pathname: "/user/"+localStorage.getItem('userId')
+      });
+  }
+
+
+  Rented(){
+    this.props.history.push({
+      pathname: "/rented/"+localStorage.getItem('userId')
       });
   }
   
@@ -117,7 +103,7 @@ else{
 
         
           <div>
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+ <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#"><img src={Logo} alt="switching" /></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
@@ -130,7 +116,7 @@ else{
         <a className="nav-link" href="/app">Início <span className="sr-only">(current)</span></a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Alugados</a>
+        <a className="nav-link" onClick={this.Rented.bind(this)}>Alugados</a>
       </li>
       <li className="nav-item">
         <a className="nav-link" onClick={this.myAccount.bind(this)}>Minha Conta</a>
@@ -146,7 +132,7 @@ else{
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
-</nav>        
+</nav>         
 <Index>
   <div className="body">
               <div className="newReleases">
@@ -159,7 +145,7 @@ else{
                               <img src={games.images} alt={games.name} ></img>
                               <p className="game-title">{games.name}</p>
                               <div className="buttons">
-                                <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.Rent(e,games.id)}>Alugar</button>
+                                <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
                               </div>
                           </div>
                       </li>
@@ -179,7 +165,7 @@ else{
                               <img src={ps4games.images} alt={ps4games.name} ></img>
                               <p className="game-title">{ps4games.name}</p>
                               <div className="buttons">
-                              <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.Rent(e,games.id)}>Alugar</button>
+                              <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
                               </div>
                           </div>
                       </li>
@@ -199,7 +185,7 @@ else{
                               <img src={xboxgames.images} alt={xboxgames.name} ></img>
                               <p className="game-title">{xboxgames.name}</p>
                               <div className="buttons">
-                              <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.Rent(e,games.id)}>Alugar</button>
+                              <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
                               </div>
                           </div>
                       </li>
