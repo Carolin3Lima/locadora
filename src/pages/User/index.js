@@ -212,7 +212,7 @@ else{
             <div className="body"> 
               <div className="data">
                 <p className="data-title">Meus Dados</p>  
-
+                <p class="text-user">*Esses dados serão visíveis para quem alugar seus jogos.</p>
                 <div className="row">
                     <div className="column">
                       <form>
@@ -230,13 +230,14 @@ else{
                         <p className="data-text">Cidade:</p>
                         <input onChange={(event) => {this.handleInputChange(event,'city')}}
                          value={this.state.city}/>
-                        <p className="data-text">Endereço:</p>
-                        <input onChange={(event) => {this.handleInputChange(event,'address')}}
-                         value={this.state.address}/>
+                       
                         </form>
                     </div>
                     <form>
                     <div className="column">
+                    <p className="data-text">Endereço:</p>
+                        <input onChange={(event) => {this.handleInputChange(event,'address')}}
+                         value={this.state.address}/>
                       <p className="data-text">Região:</p>
                       <select value={this.state.region} onChange={(event) => {this.handleInputChange(event,'region')}}>
                       <option value="0">Centro</option>
@@ -245,12 +246,12 @@ else{
                       <option value="3">Oeste</option>
                       <option value="4">Sul</option>
                     </select>
-                      <p className="data-text">Hora para retirada: </p>
+                      {/* <p className="data-text">Período para retirar: </p>
                       <select value={this.state.time} onChange={(event) => {this.handleInputChange(event,'time')}}>
                       <option value="0">Manhã</option>
                       <option value="1">Tarde</option>
                       <option value="2">Noite</option>
-                      </select>
+                      </select> */}
                       <p className="data-text">Observações:</p>
                       <input onChange={(event) => {this.handleInputChange(event,'others')}}
                          value={this.state.others}/>
@@ -281,9 +282,9 @@ else{
                                         <p className="game-title">{games.name}</p>
                                         <p className="game-title">Disponível: {games.available==1?'Sim':'Não'}</p>
                                         <p className="game-title">Console: {games.console}</p>
-                                        <p className="game-title">Alugador: {games.username}</p>
-                                        <p className="game-title">Email alugador:{games.email}</p>
-                                        <p className="game-title">CPF Alugador: {games.cpf}</p>
+                                        <p className="game-title">Alugador: <div class="usergame">{games.username}</div></p>
+                                        <p className="game-title">E-mail do alugador:<div class="usergame">{games.email}</div></p>
+                                        <p className="game-title">CPF do alugador: <div class="usergame">{games.cpf}</div></p>
                                         
                                         <div className="button">
                                         <button className="btn btn-outline-success"  value= {games.id} onClick={(e) => this.Remove(e,games.id)} >Remover</button>

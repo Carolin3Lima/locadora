@@ -19,15 +19,19 @@ export const Index = styled.div`
 .data-text{
   color:white;
   font-weight: bold;
-  margin-left: 40px;
+  padding-top: 10px;
+  // margin-left: -10px;
+  // margin-right: 30px;
 }
 
-
+.data-games{
+  padding-top: 50px;
+}
 
 .buttons{
   margin-left: 280px;
   padding-bottom: 20px;
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .data{
@@ -38,12 +42,30 @@ export const Index = styled.div`
 
 
 }
+.usergame{
+  padding-top: 10px;
+  color: white;
+}
+.text-user{
+  margin-left: 30px;
+}
+
+form{
+  padding-left: 60px;
+
+}
+
+select{
+  width: 200px;
+}
 
 img {
   width: 200px;
   height: 280px;
   padding-left: 15px;
 }
+
+
 
 .game-title {
   text-align: center;
@@ -54,14 +76,23 @@ img {
 .button {
   margin-left: 55px;
   padding-bottom: 20px;
-}
-
-.row {
-  display: flex;
+  // padding-top: 30px;
 }
 
 .column {
-  flex: 50%;
+  float: left;
+  width: 50%;
+  padding: 10px;
+  // padding-right: 50px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  
 }
 
 `;

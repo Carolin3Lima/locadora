@@ -78,7 +78,7 @@ ul {
 }
 
 .title {
-  margin-left: 40px;
+  margin-left: 120px;
   font-weight: bold;
   color: #1eeca8;
   padding-top: 20px;
@@ -89,7 +89,8 @@ button {
 }
 
 .buttons{
-  margin-left: 50px;
+  margin-left: 500px;
+  margin-top: -50px;
   padding-bottom: 8px;
 }
 
@@ -122,18 +123,58 @@ button {
 
 export const Item = styled.div`
 
-.card-block {
-  min-height: 300px;
-  background-color: black;
+// .card-block {
+//   min-height: 300px;
+//   background-color: black;
+// }
+
+// .container-fluid {
+//   width: 78em;
+//   overflow-x: auto;
+//   white-space: nowrap;
+// }
+
+// .container-fluid::-webkit-scrollbar {
+//   display: none;
 }
 
-.container-fluid {
-  width: 78em;
-  overflow-x: auto;
-  white-space: nowrap;
+img{
+  margin-left: 30px;
+};
+
+
+.game-title{
+  margin-right: 10px;
 }
 
-.container-fluid::-webkit-scrollbar {
-  display: none;
+.column {
+  float: left;
+  width: 30%;
+  padding-top: 40px;
+  // padding-bottom: 20px;
 }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.info-data{
+  border: 2px solid #1eeca8;
+  border-radius: 5px;
+  width: 70%;
+  margin-left: 100px;
+}
+
+.line{
+  margin-left: 150px;
+}
+
+.data-user{
+  color:white;
+  font-weight: normal;
+}
+
 `;

@@ -137,93 +137,51 @@ else{
               <div className="newReleases">
               <p className="title">Jogos Alugados</p>
               <Item>
-              <div className="container-fluid">
-                  <div className="row flex-nowrap">
-                      <div className="col-3">
-                          <div className="card card-block d-flex flex-row bd-highlight mb-3 justify-content-between">
+           <div className="info-data">
                           {
                             games.map(games => (
                                 <div key={games.id}>
                                     <div className="row-games">
+
+                                         <div className="row">
+                                         <div class="column">
                                         <img src={games.images} alt={games.name} ></img>
                                         <p className="game-title">{games.name}</p>
-                                        <p className="game-title">Nome dono:{games.username}</p>
-                                        <p className="game-title">email dono:{games.email}</p>
-                                        <p className="game-title">cpf dono:{games.cpf}</p>
-                                        <p className="game-title">Região:
-                                      {games.region==0 ?'Centro' :games.region==1 ?'Leste': games.region==2 ?'Norte':games.region==3 ?'Oeste':'Sul'}</p>
-                                        <div className="buttons">
-                                          <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
+
                                         </div>
-                                    </div>
-                                </div>
-                            ))
-                          }
-                        </div>
-                      </div> 
-                  </div>
-              </div>
-              </Item>
-              </div>
-{/* 
-              <div className="ps4Only">
-              <p className="title">Playstation 4</p>
 
-              <Item>
-              <div className="container-fluid">
-                  <div className="row flex-nowrap">
-                      <div className="col-3">
-                          <div className="card card-block d-flex flex-row bd-highlight mb-3 justify-content-between">
-                          {
-                            ps4games.map(ps4games => (
-                                <div key={ps4games.id}>
-                                    <div className="row-games">
-                                        <img src={ps4games.images} alt={ps4games.name} ></img>
-                                        <p className="game-title">{games.name}</p>
-                                        <div className="buttons">
-                                          <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
+
+                                        
+                                          <div class="column">
+
+                                        <p className="game-title">Dono do jogo:<div class="data-user">{games.username}</div></p>
+                                        <p className="game-title">E-mail:<div class="data-user">{games.email}</div></p>
+                                        <p className="game-title">CPF:<div class="data-user">{games.cpf}</div></p>
+                                        {/* <p className="game-title">Período para retirada:{games.time}</p> */}
                                         </div>
-                                    </div>
-                                </div>
-                            ))
-                          }
-                        </div>
-                      </div> 
-                  </div>
-              </div>
-              </Item>
 
-              </div> */}
-
-              {/* <div className="xboxOnly">
-              <p className="title">Xbox One</p>
-             
-              <Item>
-                <div className="container-fluid">
-                    <div className="row flex-nowrap">
-                        <div className="col-3">
-                            <div className="card card-block d-flex flex-row bd-highlight mb-3 justify-content-between">
-                            {
-                              xboxgames.map(xboxgames => (
-                                  <div key={xboxgames.id}>
-                                      <div className="row-games">
-                                          <img src={xboxgames.images} alt={xboxgames.name} ></img>
-                                          <p className="game-title">{xboxgames.name}</p>
-                                          <div className="buttons">
-                                            <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
-                                          </div>
+                                        <div class="column">
+                                        <p className="game-title">Região do jogo:<div class="data-user">
+                                      {games.region==0 ?'Centro' :games.region==1 ?'Leste': games.region==2 ?'Norte':games.region==3 ?'Oeste':'Sul'}</div></p>
+                                        <p className="game-title">Endereço pra retirada:<div class="data-user">{games.address}</div></p>
+                                        <p className="game-title">Observações:<div class="data-user">      {games.others}</div> </p>
+                                        
                                       </div>
-                                  </div>
-                              ))
-                            }
-                          </div>
-                        </div> 
-                    </div>
-                </div>
-                </Item>
 
-              
-              </div> */}
+                                        <div className="buttons">
+                                          <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
+                                        </div>
+                                        <p class="line">       _______________________________________________________________________</p>
+                                      </div>
+
+                                    </div>
+                                </div>
+                            ))
+                          }
+                        </div>
+           </Item>
+
+              </div>
               </div>
               </Index>
               
