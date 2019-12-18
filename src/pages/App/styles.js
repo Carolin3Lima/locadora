@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -96,14 +97,9 @@ button {
 .game-title {
   text-align: center;
   font-weight: bold;
-  color: #1eeca8;
+  color: white;
   padding-top: 10px;
-  // padding-bottom: 10px;
-}
-
-.more {
-  font-size: 10px;
-  margin-left: 93%;
+  padding-bottom: 10px;
 }
 
 .newReleases {
@@ -137,3 +133,5 @@ export const Item = styled.div`
   display: none;
 }
 `;
+
+

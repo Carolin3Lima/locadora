@@ -21,6 +21,7 @@ import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 const TOKEN =
   "pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ";
 
+
   
   class App extends Component {
 
@@ -44,8 +45,6 @@ const TOKEN =
       this.setState({
         userId: localStorage.getItem('userId')
       })
-
-
     try {
       const response = await api.get("/games/available", {
       });
@@ -79,6 +78,8 @@ const TOKEN =
       console.log(err);
     }
   }
+
+  
 
 
 
@@ -146,7 +147,10 @@ else{
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
-</nav>        
+</nav>    
+
+
+
 <Index>
   <div className="body">
               <div className="newReleases">
@@ -162,6 +166,14 @@ else{
                                     <div className="row-games">
                                         <img src={games.images} alt={games.name} ></img>
                                         <p className="game-title">{games.name}</p>
+                                      <p className="game-title">Região:
+                                      {games.region==0 ?'Centro' :games.region==1 ?'Leste': games.region==2 ?'Norte':games.region==3 ?'Oeste':'Sul'}</p>
+                                      <p className="game-title">Genero:{games.genre}
+                                      </p>
+                                      <p className="game-title">Offline:{games.offline}
+                                      </p>
+                                      <p className="game-title">Online:{games.online}
+                                      </p>
                                         <div className="buttons">
                                         <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.Rent(e,games.id)}>Alugar</button>
                                         </div>
@@ -192,7 +204,7 @@ else{
                                         <img src={ps4games.images} alt={ps4games.name} ></img>
                                         <p className="game-title">{ps4games.name}</p>
                                         <div className="buttons">
-                                        <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.Rent(e,games.id)}>Alugar</button>
+                                        <button className="btn btn-outline-success" value= {ps4games.id} onClick={(e) => this.Rent(e,ps4games.id)}>Alugar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -222,8 +234,9 @@ else{
                                         <img src={xboxgames.images} alt={ps4games.name} ></img>
                                         <p className="game-title">{xboxgames.name}</p>
                                         <div className="buttons">
-                                        <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.Rent(e,games.id)}>Alugar</button>
+                                        <button className="btn btn-outline-success" value= {xboxgames.id} onClick={(e) => this.Rent(e,xboxgames.id)}>Alugar</button>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             ))
@@ -233,17 +246,18 @@ else{
                   </div>
               </div>
               </Item>
+              </div>
 
+              </div>
               
-              </div>
-              </div>
               </Index>
               
-                <footer className="page-footer font-small blue bg-success">
-                  <div className="footer-copyright text-center py-3 text-white">© 2019 Copyright:
-                    <a> IronHacker</a>
-                  </div>
-                </footer>
+                            
+            <footer className="page-footer font-small blue bg-success">
+              <div className="footer-copyright text-center py-3 text-white">© 2019 Copyright:
+                <a> IronHacker</a>
+              </div>
+            </footer>
                
           </div>
 
@@ -251,7 +265,6 @@ else{
       );
     }    
   }
-
   
 }
 

@@ -29,8 +29,6 @@ import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
       this.setState({
         userId: localStorage.getItem('userId')
       })
-
-
     try {
       const response = await api.get("/user/games/rented/"+localStorage.getItem('userId'), {
       });
@@ -149,6 +147,11 @@ else{
                                     <div className="row-games">
                                         <img src={games.images} alt={games.name} ></img>
                                         <p className="game-title">{games.name}</p>
+                                        <p className="game-title">Nome dono:{games.username}</p>
+                                        <p className="game-title">email dono:{games.email}</p>
+                                        <p className="game-title">cpf dono:{games.cpf}</p>
+                                        <p className="game-title">Região:
+                                      {games.region==0 ?'Centro' :games.region==1 ?'Leste': games.region==2 ?'Norte':games.region==3 ?'Oeste':'Sul'}</p>
                                         <div className="buttons">
                                           <button className="btn btn-outline-success" value= {games.id} onClick={(e) => this.GiveBack(e,games.id)}>Devolver</button>
                                         </div>
