@@ -53,6 +53,10 @@ class SignIn extends Component {
   render() {
     return (
       <Container>
+        <div className="block">
+        <div><p className="title">Troque jogos em São Paulo! <i class="fa fa-gamepad"></i></p>
+        </div>
+        <div>
         <Form onSubmit={this.handleSignIn}>
           <img src={Logo} alt="switching" />
           {this.state.error && <p>{this.state.error}</p>}
@@ -70,6 +74,8 @@ class SignIn extends Component {
           <hr />
           <Link to="/signup">Criar conta grátis</Link>
         </Form>
+        </div>
+        </div>
       </Container>
     );
   }

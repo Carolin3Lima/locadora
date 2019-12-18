@@ -5,6 +5,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+
+  .block {
+    display: block;
+  }
+
+  .title {
+    color: grey;
+    margin-left: 100px;
+    
+  }
 `;
 
 export const Form = styled.form`
