@@ -5,7 +5,8 @@ import ReactModal from "react-modal";
 import { Index, Item } from "./styles";
 import bootstrap from "bootstrap/dist/css/bootstrap.min.css";
 
-
+const TOKEN =
+  "pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ";
 
 class App extends Component {
   state = {
@@ -162,7 +163,7 @@ class App extends Component {
           <Index>
             <div className="body">
               <div className="newReleases">
-                <p className="title">Lançamentos</p>
+                <p className="title">Jogos Disponíveis</p>
                 <Item>
                   <div className="container-fluid">
                     <div className="row flex-nowrap">
@@ -174,7 +175,7 @@ class App extends Component {
                                 
                             <img className="game-image" src={games.images} alt={games.name} data-toggle="tooltip" data-placement="left" title={games.region==0 ?' Centro' :games.region==1 ?' Leste': games.region==2 ?' Norte':games.region==3 ?' Oeste':' Sul'}></img>
                                 <p className="game-title">{games.name}</p>
-       
+                                <p className="game-console">{games.console}</p>
                                 <div className="buttons">
                                   <button
                                     className="btn btn-outline-success"

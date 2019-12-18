@@ -100,7 +100,12 @@ button {
   font-weight: bold;
   color: white;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+}
+
+.game-console {
+  text-align: center;
+  
 }
 
 .newReleases {
